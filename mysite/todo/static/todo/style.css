@@ -1,0 +1,19 @@
+fieldset.main {
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+input.cancel {
+    background-image: url("images/cancel-icon.png");
+    width: 25px;
+    height: 25px;
+}
+
+input.but_style {
+    background-color: #0fffe3;
+}
+
+body {
+    background: #0fffe3;
+}

@@ -1,0 +1,47 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
+
+<html>
+<head>
+    <center><h1>ToDo Application</h1></center>
+</head>
+    <body>
+        <form action="/addToDoTable/" method="post">{% csrf_token %}
+            <center>
+                <input type="text" name="new_table">
+                <input class="but_style" type="submit" value="Add Tab">
+            </center>
+        </form>
+        {% for table in tables %}
+        
+        <fieldset class="main">
+        
+        <form action="/deleteToDoTable/{{table.id}}/" method = "post">{% csrf_token %}
+            <h2>
+                {{table.name_table}}
+                <input class="but_style" type="submit" value="Delete Tab">
+            </h2>
+        </form>
+
+        <form action="/addTodoItem/{{table.id}}/" method = "post">{% csrf_token %}
+            <input type="text" name="content">
+            <input class="but_style" type="submit" value="Add a case">
+        </form>
+        
+        <ul>
+            {% for i in all_items %}
+                {% if table.id == i.todo_tables.id %}
+                    <form action="/deleteTodoItem/{{i.id}}/" method = "post">{% csrf_token %}
+                        <input class="cancel" type="submit" value="">
+                        {{i.content}}
+                    </form>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        </fieldset>
+        {% endfor %}
+    </body>
+</html>
+
+
